@@ -48,7 +48,8 @@ ORDER BY total_sales DESC;
 - Canada, despite having fewer than 1,600 customers, contributed nearly 2M in revenue, suggesting an opportunity for expansion if customer base grows.
 ![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
 
--- Sales Distribution by Country
+```sql
+Sales Distribution by Country
 SELECT 
     c.country,
     COUNT(DISTINCT f.customer_key) AS total_customers,
