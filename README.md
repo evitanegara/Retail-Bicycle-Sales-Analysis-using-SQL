@@ -30,14 +30,13 @@ To identify top-selling products, I aggregated sales revenue and ranked the high
 
 ```sql
 SELECT TOP 10
-    p.product_name,
-    SUM(f.sales_amount) AS total_sales
+  p.product_name,
+  SUM(f.sales_amount) AS total_sales
 FROM gold.fact_sales f
 LEFT JOIN gold.dim_products p
-    ON f.product_key = p.product_key
+  ON f.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY total_sales DESC;
-
 
 
 ### 2. Revenue by Country
