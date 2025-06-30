@@ -5,13 +5,13 @@ This SQL-based project focuses on analyzing retail sales data related to bicycle
 
 ## Dataset Overview
 
-The dataset follows a **star schema structure**, consisting of one fact table and two dimension tables:
+The dataset follows a star schema structure, consisting of one fact table and two dimension tables:
 
-| Table Name     | Columns                                                                                   |
-|----------------|--------------------------------------------------------------------------------------------|
-| `fact_sales`   | `order_number`, `product_key`, `customer_key`, `order_date`, `shipping_date`, `due_date`, `sales_amount`, `quantity`, `price` |
-| `dim_products` | `product_key`, `product_id`, `product_number`, `product_name`, `category_id`, `category`, `subcategory`, `maintenance`, `cost`, `product_line`, `start_date` |
-| `dim_customers`| `customer_key`, `customer_id`, `customer_number`, `first_name`, `last_name`, `country`, `marital_status`, `gender`, `birthdate`, `create_date` |
+| Table Name     | Columns |
+|----------------|---------|
+| fact_sales     | order_number, product_key, customer_key, order_date, shipping_date, due_date, sales_amount, quantity, price |
+| dim_products   | product_key, product_id, product_number, product_name, category_id, category, subcategory, maintenance, cost, product_line, start_date |
+| dim_customers  | customer_key, customer_id, customer_number, first_name, last_name, country, marital_status, gender, birthdate, create_date |
 
 ## Executive Summary
 
