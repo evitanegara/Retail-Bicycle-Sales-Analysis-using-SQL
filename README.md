@@ -172,26 +172,6 @@ GROUP BY c.gender;
 - Regular customers account for 2,198 individuals  
 - VIP customers, though smallest in number (1,655), likely contribute the most revenue  
 - Targeted efforts to retain and convert New users into Regular or VIP could significantly boost profitability
-  
-```sql
- Most Valuable Customers by Spend
-SELECT TOP 10
-  c.customer_number,
-  c.first_name + ' ' + c.last_name AS customer_name,
-  c.country,
-  SUM(f.sales_amount) AS total_revenue
-FROM gold.fact_sales f
-JOIN gold.dim_customers c ON f.customer_key = c.customer_key
-GROUP BY c.customer_number, c.first_name, c.last_name, c.country
-ORDER BY total_revenue DESC;
-```
-![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
-
-### 8. Top-Spending Customers
-- All top 10 highest-spending customers are located in France  
-- Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
-- Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
-- These customers present an opportunity for premium loyalty programs and tailored offers
 
  ```sql
 -- Customer Segmentation: VIP, Regular, and New
@@ -224,6 +204,28 @@ GROUP BY customer_segment
 ORDER BY total_customers DESC;
 ```
 ![image](https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3)
+
+---
+  
+### 8. Top-Spending Customers
+- All top 10 highest-spending customers are located in France  
+- Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
+- Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
+- These customers present an opportunity for premium loyalty programs and tailored offers
+
+```sql
+ Most Valuable Customers by Spend
+SELECT TOP 10
+  c.customer_number,
+  c.first_name + ' ' + c.last_name AS customer_name,
+  c.country,
+  SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+JOIN gold.dim_customers c ON f.customer_key = c.customer_key
+GROUP BY c.customer_number, c.first_name, c.last_name, c.country
+ORDER BY total_revenue DESC;
+```
+![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
 
 ---
 
