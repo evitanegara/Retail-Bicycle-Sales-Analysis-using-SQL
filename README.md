@@ -36,7 +36,7 @@ FROM gold.fact_sales f
 LEFT JOIN gold.dim_products p
   ON f.product_key = p.product_key
 GROUP BY p.product_name
-ORDER BY total_sales DESC; ``` </pre>
+ORDER BY total_sales DESC;```
 
 
 ### 2. Revenue by Country
