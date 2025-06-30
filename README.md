@@ -46,8 +46,7 @@ ORDER BY total_sales DESC;
 - Australia nearly matches U.S. revenue at 9.06 million, but with less than half the customer count (3,591), highlighting higher average order values or premium product penetration.
 - Mid-tier contributors include the United Kingdom (3.39M), Germany (2.89M), and France (2.64M), each showing decent customer engagement but lower sales volumes.
 - Canada, despite having fewer than 1,600 customers, contributed nearly 2M in revenue, suggesting an opportunity for expansion if customer base grows.
-![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
-
+  
 ```sql
 Sales Distribution by Country
 SELECT 
@@ -59,18 +58,55 @@ JOIN gold.dim_customers c ON f.customer_key = c.customer_key
 WHERE c.country != 'n/a'
 GROUP BY c.country
 ORDER BY total_revenue DESC;
+![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
+
 ```
 
 ### 3. Year-over-Year Sales Trends
 - Sales performance rose significantly from 2011 (7.1M) to 2013 (16.3M), indicating strong year-over-year growth.
 - 2013 marked the peak in both revenue (16.3M) and customer volume (52.7K), highlighting it as the business’s best-performing year.
 - In 2014, sales dropped sharply to just 45K, reflecting either data incompleteness or a major operational shift.
+```sql
+-- Year-over-Year Sales Overview
+SELECT
+  YEAR(order_date) AS order_year,
+  SUM(sales_amount) AS total_sales,
+  COUNT(customer_key) AS total_customer,
+  SUM(quantity) AS total_quantity
+FROM gold.fact_sales
+WHERE order_date IS NOT NULL
+GROUP BY YEAR(order_date)
+ORDER BY YEAR(order_date);
+```
+
 ![image](https://github.com/user-attachments/assets/88c4621a-8a6a-4115-a828-1d60cf9eb830)
+
 
 ### 4. Category Revenue Contribution
 - Bikes contribute the overwhelming majority of revenue, generating 96.46% of total sales.
 - Accessories (2.39%) and Clothing (1.16%) have significantly lower revenue shares.
 - The imbalance highlights a strategic opportunity to upsell accessories and apparel alongside bike purchases, boosting overall order value.
+```sql
+-- Revenue Contribution by Product Category
+WITH category_sales AS (
+  SELECT
+    p.category,
+    SUM(f.sales_amount) AS total_sales
+  FROM gold.fact_sales f
+  LEFT JOIN gold.dim_products p
+    ON f.product_key = p.product_key
+  GROUP BY category
+)
+SELECT
+  category,
+  total_sales,
+  SUM(total_sales) OVER () AS overall_sales,
+  CONCAT(
+    ROUND((CAST(total_sales AS FLOAT) / SUM(total_sales) OVER ()) * 100, 2), '%'
+  ) AS percentage_of_total
+FROM category_sales
+ORDE
+  
 ![image](https://github.com/user-attachments/assets/9c9a69e0-f8e2-4fbb-ad57-510eff90847b)
 
 
@@ -79,6 +115,36 @@ ORDER BY total_revenue DESC;
 - Accessories and clothing items (gloves, jerseys, helmets) surged in 2013, then declined sharply in 2014.
 - Products like All-Purpose Bike Stand and Classic Vests showed growth over 2 years, suggesting sustainable popularity.
 -  2013 marked the peak sales year for most SKUs, with a significant drop-off in 2014 across categories.
+
+```sql
+-- Year-over-Year Product Performance
+WITH yearly_product_sales AS (
+  SELECT
+    YEAR(f.order_date) AS order_year,
+    p.product_name,
+    SUM(f.sales_amount) AS current_sales
+  FROM gold.fact_sales f
+  LEFT JOIN gold.dim_products p
+    ON f.product_key = p.product_key
+  WHERE order_date IS NOT NULL
+  GROUP BY 
+    YEAR(f.order_date),
+    p.product_name
+)
+SELECT
+  order_year,
+  product_name,
+  current_sales,
+  LAG(current_sales) OVER (PARTITION BY product_name ORDER BY order_year) AS py_sales,
+  current_sales - LAG(current_sales) OVER (PARTITION BY product_name ORDER BY order_year) AS diff_py,
+  CASE 
+    WHEN current_sales - LAG(current_sales) OVER (PARTITION BY product_name ORDER BY order_year) < 0 THEN 'Decrease'
+    WHEN current_sales - LAG(current_sales) OVER (PARTITION BY product_name ORDER BY order_year) > 0 THEN 'Increase'
+    ELSE 'No Change'
+  END AS py_change
+FROM yearly_product_sales
+ORDER BY product_name, order_year;
+```
 ![image](https://github.com/user-attachments/assets/616704ad-aa38-4d49-ab91-49a6d5ad0182)
 
 
@@ -86,6 +152,19 @@ ORDER BY total_revenue DESC;
 - Female customers contributed slightly more revenue (14.8M) than males (14.5M)
 - Customer count is nearly equal across genders—9,128 females vs. 9,341 males
 - Suggests purchasing power is balanced across gender, with similar average order values
+  
+```sql
+-- Revenue Segmentation by Gender
+SELECT 
+    c.gender,
+    SUM(f.sales_amount) AS total_sales,
+    COUNT(DISTINCT f.customer_key) AS customer_count
+FROM gold.fact_sales f
+JOIN gold.dim_customers c ON f.customer_key = c.customer_key
+WHERE c.gender IS NOT NULL
+  AND c.gender != 'n/a'
+GROUP BY c.gender;
+```
 ![image](https://github.com/user-attachments/assets/cadab18b-4456-4c51-8603-1daebc75991f)
 
 
@@ -94,13 +173,56 @@ ORDER BY total_revenue DESC;
 - Regular customers account for 2,198 individuals  
 - VIP customers, though smallest in number (1,655), likely contribute the most revenue  
 - Targeted efforts to retain and convert New users into Regular or VIP could significantly boost profitability
+  
+```sql
+-- Most Valuable Customers by Spend
+SELECT TOP 10
+  c.customer_number,
+  c.first_name + ' ' + c.last_name AS customer_name,
+  c.country,
+  SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+JOIN gold.dim_customers c ON f.customer_key = c.customer_key
+GROUP BY c.customer_number, c.first_name, c.last_name, c.country
+ORDER BY total_revenue DESC;
+```
 ![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
 
 ### 8. Top-Spending Customers
 - All top 10 highest-spending customers are located in France  
 - Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
 - Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
-- These customers present an opportunity for premium loyalty programs and tailored offers  
+- These customers present an opportunity for premium loyalty programs and tailored offers
+  ```sql
+-- Customer Segmentation: VIP, Regular, and New
+WITH customer_spending AS (
+  SELECT
+    c.customer_key,
+    SUM(f.sales_amount) AS total_spending,
+    MIN(order_date) AS first_order,
+    MAX(order_date) AS last_order,
+    DATEDIFF(month, MIN(order_date), MAX(order_date)) AS lifespan
+  FROM gold.fact_sales f
+  LEFT JOIN gold.dim_customers c
+    ON f.customer_key = c.customer_key
+  GROUP BY c.customer_key
+)
+SELECT 
+  customer_segment,
+  COUNT(customer_key) AS total_customers
+FROM (
+  SELECT 
+    customer_key,
+    CASE 
+      WHEN lifespan >= 12 AND total_spending > 5000 THEN 'VIP'
+      WHEN lifespan >= 12 AND total_spending <= 5000 THEN 'Regular'
+      ELSE 'New'
+    END AS customer_segment
+  FROM customer_spending
+) AS segmented_customers
+GROUP BY customer_segment
+ORDER BY total_customers DESC;
+```
 ![image](https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3)
 
 ---
