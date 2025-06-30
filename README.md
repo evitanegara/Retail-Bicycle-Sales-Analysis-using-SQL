@@ -13,7 +13,6 @@ The dataset follows a star schema structure consisting of one fact table and two
 | `dim_customers` | `customer_key`, `customer_id`, `customer_number`, `first_name`, `last_name`, `country`, `marital_status`, `gender`, `birthdate`, `create_date`               |
 
 
-
 ## Executive Summary
 
 This SQL-based analysis explores retail sales data from 2010 to 2014, uncovering key trends across products, customers, and countries. Bikes dominate sales, contributing over 96% of total revenue. The Mountain-200 and Road-150 models are top performers, with individual products generating over 1.3 million in sales.Revenue is nearly evenly split by gender, with a slightly higher spend from female customers. The United States and Australia lead in revenue, while France has the highest-spending individual customers. Sales peaked in 2013 with over 16 million in revenue, followed by a sharp decline in 2014. Most customers are new, highlighting an opportunity for retention and loyalty programs. To drive growth, the business should focus on expanding bike offerings, targeting high-performing countries, and converting new customers into repeat buyers.
