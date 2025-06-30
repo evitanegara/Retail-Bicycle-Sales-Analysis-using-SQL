@@ -36,7 +36,17 @@ FROM gold.fact_sales f
 LEFT JOIN gold.dim_products p
   ON f.product_key = p.product_key
 GROUP BY p.product_name
-ORDER BY total_sales DESC;```
+ORDER BY total_sales DESC;
+
+
+---
+
+✅ **Paste that into your README.md**  
+✅ Only the SQL will appear in the gray syntax-highlighted box  
+✅ The rest (bullets, intro text) will stay normal like your screenshot
+
+If you'd like me to apply the same format to all 8 insights, just say:  
+**"Format all 8 insights like this please"** – and I’ll deliver the entire thing.
 
 
 ### 2. Revenue by Country
