@@ -38,7 +38,8 @@ LEFT JOIN gold.dim_products p
 GROUP BY p.product_name
 ORDER BY total_sales DESC;
 ```
-![image](https://github.com/user-attachments/assets/47d018bf-1981-4189-a6ee-e58a2d892d5f)
+![image](https://github.com/user-attachments/assets/6eede4aa-1536-47bf-b222-c1190a4e0b0f)
+
 
 
 ### 2. Revenue by Country
