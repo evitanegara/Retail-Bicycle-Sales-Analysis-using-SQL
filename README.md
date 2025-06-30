@@ -38,7 +38,10 @@ LEFT JOIN gold.dim_products p
 GROUP BY p.product_name
 ORDER BY total_sales DESC;
 ```
-![image](https://github.com/user-attachments/assets/43a8afed-9567-425b-b9df-9cbe21ab91dc)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/43a8afed-9567-425b-b9df-9cbe21ab91dc" alt="Dashboard Visual" width="700"/>
+</p>
+
 
 
 ### 2. Revenue by Country
@@ -157,7 +160,7 @@ ORDER BY product_name, order_year;
 - Female customers contributed slightly more revenue (14.8M) than males (14.5M)
 - Customer count is nearly equal across genders—9,128 females vs. 9,341 males
 - Suggests purchasing power is balanced across gender, with similar average order values
-- 
+  
  To understand how revenue is split by gender, this query calculates total sales and customer counts for male and female segments.  
 ```sql
  Revenue Segmentation by Gender
@@ -213,8 +216,6 @@ ORDER BY total_customers DESC;
 ```
 ![image](https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3)
 
----
-  
 ### 8. Top-Spending Customers
 - All top 10 highest-spending customers are located in France  
 - Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
@@ -236,7 +237,6 @@ ORDER BY total_revenue DESC;
 ```
 ![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
 
----
 
 ## Recommendations
 
