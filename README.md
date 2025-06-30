@@ -87,26 +87,25 @@ ORDER BY YEAR(order_date);
 - Accessories (2.39%) and Clothing (1.16%) have significantly lower revenue shares.
 - The imbalance highlights a strategic opportunity to upsell accessories and apparel alongside bike purchases, boosting overall order value.
 ```sql
--- Revenue Contribution by Product Category
+Revenue Contribution by Product Category
 WITH category_sales AS (
-  SELECT
-    p.category,
-    SUM(f.sales_amount) AS total_sales
-  FROM gold.fact_sales f
-  LEFT JOIN gold.dim_products p
-    ON f.product_key = p.product_key
-  GROUP BY category
-)
 SELECT
-  category,
-  total_sales,
-  SUM(total_sales) OVER () AS overall_sales,
-  CONCAT(
-    ROUND((CAST(total_sales AS FLOAT) / SUM(total_sales) OVER ()) * 100, 2), '%'
-  ) AS percentage_of_total
+p.category,
+sum(f.sales_amount) AS total_sales
+-- buat windows function
+from gold.fact_sales f
+LEFT JOIN gold.dim_products p
+on f.product_key = p.product_key
+GROUP BY category)
+
+SELECT
+category,
+total_sales,
+SUM(total_sales) OVER () overall_sales,
+CONCAT (ROUND((CAST(total_sales AS FLOAT) / SUM(total_sales) OVER ()) * 100, 2), '%') AS percentage_of_total
 FROM category_sales
-ORDE
-  
+ORDER BY total_sales DESC
+```
 ![image](https://github.com/user-attachments/assets/9c9a69e0-f8e2-4fbb-ad57-510eff90847b)
 
 
@@ -117,7 +116,7 @@ ORDE
 -  2013 marked the peak sales year for most SKUs, with a significant drop-off in 2014 across categories.
 
 ```sql
--- Year-over-Year Product Performance
+Year-over-Year Product Performance
 WITH yearly_product_sales AS (
   SELECT
     YEAR(f.order_date) AS order_year,
@@ -154,7 +153,7 @@ ORDER BY product_name, order_year;
 - Suggests purchasing power is balanced across gender, with similar average order values
   
 ```sql
--- Revenue Segmentation by Gender
+ Revenue Segmentation by Gender
 SELECT 
     c.gender,
     SUM(f.sales_amount) AS total_sales,
@@ -175,7 +174,7 @@ GROUP BY c.gender;
 - Targeted efforts to retain and convert New users into Regular or VIP could significantly boost profitability
   
 ```sql
--- Most Valuable Customers by Spend
+ Most Valuable Customers by Spend
 SELECT TOP 10
   c.customer_number,
   c.first_name + ' ' + c.last_name AS customer_name,
@@ -193,7 +192,8 @@ ORDER BY total_revenue DESC;
 - Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
 - Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
 - These customers present an opportunity for premium loyalty programs and tailored offers
-  ```sql
+
+ ```sql
 -- Customer Segmentation: VIP, Regular, and New
 WITH customer_spending AS (
   SELECT
