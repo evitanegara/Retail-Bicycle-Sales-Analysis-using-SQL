@@ -12,17 +12,6 @@ The dataset follows a star schema structure consisting of one fact table and two
 | `dim_products`  | product\_key, product\_id, product\_number, product\_name, category\_id, category, subcategory, maintenance, cost, product\_line, start\_date |
 | `dim_customers` | customer\_key, customer\_id, customer\_number, first\_name, last\_name, country, marital\_status, gender, birthdate, create\_date             |
 
-## Dataset Overview
-
-The dataset follows a **star schema structure**, consisting of one fact table and two dimension tables:
-
-| Table Name     | Columns                                                                                   |
-|----------------|--------------------------------------------------------------------------------------------|
-| `fact_sales`   | `order_number`, `product_key`, `customer_key`, `order_date`, `shipping_date`, `due_date`, `sales_amount`, `quantity`, `price` |
-| `dim_products` | `product_key`, `product_id`, `product_number`, `product_name`, `category_id`, `category`, `subcategory`, `maintenance`, `cost`, `product_line`, `start_date` |
-| `dim_customers`| `customer_key`, `customer_id`, `customer_number`, `first_name`, `last_name`, `country`, `marital_status`, `gender`, `birthdate`, `create_date` |
-
-
 
 ## Executive Summary
 
