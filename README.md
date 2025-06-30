@@ -47,6 +47,7 @@ ORDER BY total_sales DESC;
 - Mid-tier contributors include the United Kingdom (3.39M), Germany (2.89M), and France (2.64M), each showing decent customer engagement but lower sales volumes.
 - Canada, despite having fewer than 1,600 customers, contributed nearly 2M in revenue, suggesting an opportunity for expansion if customer base grows.
   
+ To analyze revenue and customer volume by geography, the following query aggregates total sales and customer count by country. 
 ```sql
 Sales Distribution by Country
 SELECT 
@@ -66,6 +67,8 @@ ORDER BY total_revenue DESC;
 - Sales performance rose significantly from 2011 (7.1M) to 2013 (16.3M), indicating strong year-over-year growth.
 - 2013 marked the peak in both revenue (16.3M) and customer volume (52.7K), highlighting it as the business’s best-performing year.
 - In 2014, sales dropped sharply to just 45K, reflecting either data incompleteness or a major operational shift.
+  
+This query tracks overall business performance trends across years by calculating annual sales, customer volume, and quantity sold.
 ```sql
 -- Year-over-Year Sales Overview
 SELECT
@@ -86,6 +89,8 @@ ORDER BY YEAR(order_date);
 - Bikes contribute the overwhelming majority of revenue, generating 96.46% of total sales.
 - Accessories (2.39%) and Clothing (1.16%) have significantly lower revenue shares.
 - The imbalance highlights a strategic opportunity to upsell accessories and apparel alongside bike purchases, boosting overall order value.
+  
+To understand category-level performance, this query calculates each product category’s contribution to overall revenue.
 ```sql
 Revenue Contribution by Product Category
 WITH category_sales AS (
@@ -115,6 +120,7 @@ ORDER BY total_sales DESC
 - Products like All-Purpose Bike Stand and Classic Vests showed growth over 2 years, suggesting sustainable popularity.
 -  2013 marked the peak sales year for most SKUs, with a significant drop-off in 2014 across categories.
 
+ This query evaluates how each product performs year-over-year by comparing current sales with previous year sales and categorizing the trend.
 ```sql
 Year-over-Year Product Performance
 WITH yearly_product_sales AS (
@@ -151,7 +157,8 @@ ORDER BY product_name, order_year;
 - Female customers contributed slightly more revenue (14.8M) than males (14.5M)
 - Customer count is nearly equal across genders—9,128 females vs. 9,341 males
 - Suggests purchasing power is balanced across gender, with similar average order values
-  
+- 
+ To understand how revenue is split by gender, this query calculates total sales and customer counts for male and female segments.  
 ```sql
  Revenue Segmentation by Gender
 SELECT 
@@ -172,7 +179,8 @@ GROUP BY c.gender;
 - Regular customers account for 2,198 individuals  
 - VIP customers, though smallest in number (1,655), likely contribute the most revenue  
 - Targeted efforts to retain and convert New users into Regular or VIP could significantly boost profitability
-
+  
+This query classifies customers into segments based on spending and loyalty duration (lifespan), providing strategic insight into customer base composition.
  ```sql
 -- Customer Segmentation: VIP, Regular, and New
 WITH customer_spending AS (
@@ -213,6 +221,7 @@ ORDER BY total_customers DESC;
 - Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
 - These customers present an opportunity for premium loyalty programs and tailored offers
 
+  This query identifies the top 10 highest-spending customers, showing who contributes most revenue and where they are from.
 ```sql
  Most Valuable Customers by Spend
 SELECT TOP 10
