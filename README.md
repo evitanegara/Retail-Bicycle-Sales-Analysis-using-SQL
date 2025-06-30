@@ -62,7 +62,9 @@ JOIN gold.dim_customers c ON f.customer_key = c.customer_key
 WHERE c.country != 'n/a'
 GROUP BY c.country
 ORDER BY total_revenue DESC;
-![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631" alt="Dashboard Visual" width="400"/>
+</p>
 
 ```
 
