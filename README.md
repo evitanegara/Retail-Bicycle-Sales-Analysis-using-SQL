@@ -39,7 +39,7 @@ GROUP BY p.product_name
 ORDER BY total_sales DESC;
 ```
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/43a8afed-9567-425b-b9df-9cbe21ab91dc" alt="Dashboard Visual" width="600"/>
+  <img src="https://github.com/user-attachments/assets/43a8afed-9567-425b-b9df-9cbe21ab91dc" alt="Dashboard Visual" width="400"/>
 </p>
 
 
