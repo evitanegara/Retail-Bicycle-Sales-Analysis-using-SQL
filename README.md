@@ -38,9 +38,7 @@ LEFT JOIN gold.dim_products p
 GROUP BY p.product_name
 ORDER BY total_sales DESC;
 ```
-
-If you'd like me to apply the same format to all 8 insights, just say:  
-**"Format all 8 insights like this please"** – and I’ll deliver the entire thing.
+![image](https://github.com/user-attachments/assets/47d018bf-1981-4189-a6ee-e58a2d892d5f)
 
 
 ### 2. Revenue by Country
@@ -48,22 +46,20 @@ If you'd like me to apply the same format to all 8 insights, just say:
 - Australia nearly matches U.S. revenue at 9.06 million, but with less than half the customer count (3,591), highlighting higher average order values or premium product penetration.
 - Mid-tier contributors include the United Kingdom (3.39M), Germany (2.89M), and France (2.64M), each showing decent customer engagement but lower sales volumes.
 - Canada, despite having fewer than 1,600 customers, contributed nearly 2M in revenue, suggesting an opportunity for expansion if customer base grows.
-  ![image](https://github.com/user-attachments/assets/67f9e4bc-24b5-42bb-8192-2667096b6d58)
-  ![image](https://github.com/user-attachments/assets/42d19351-1a8d-4f9a-a946-c24d3494950e)
+![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
 
 ### 3. Year-over-Year Sales Trends
 - Sales performance rose significantly from 2011 (7.1M) to 2013 (16.3M), indicating strong year-over-year growth.
 - 2013 marked the peak in both revenue (16.3M) and customer volume (52.7K), highlighting it as the business’s best-performing year.
 - In 2014, sales dropped sharply to just 45K, reflecting either data incompleteness or a major operational shift.
-![image](https://github.com/user-attachments/assets/19bc5a9a-607a-4bda-84f6-e07c996c347e)
-![image](https://github.com/user-attachments/assets/4417c7f6-ffd9-4881-96e5-f9652a4b6f15)
+![image](https://github.com/user-attachments/assets/88c4621a-8a6a-4115-a828-1d60cf9eb830)
 
 ### 4. Category Revenue Contribution
 - Bikes contribute the overwhelming majority of revenue, generating 96.46% of total sales.
 - Accessories (2.39%) and Clothing (1.16%) have significantly lower revenue shares.
 - The imbalance highlights a strategic opportunity to upsell accessories and apparel alongside bike purchases, boosting overall order value.
-  ![image](https://github.com/user-attachments/assets/7e17b743-7d48-4ba4-af45-adcf462be9f8)
-  ![image](https://github.com/user-attachments/assets/fe9c3c50-89ee-4eca-8fca-f1d066a05253)
+![image](https://github.com/user-attachments/assets/9c9a69e0-f8e2-4fbb-ad57-510eff90847b)
+
 
 ### 5. Product Performance Over Time
 - Mountain-200, Road-150, and Touring-1000 models peaked in 2013 before dropping in 2014. 
