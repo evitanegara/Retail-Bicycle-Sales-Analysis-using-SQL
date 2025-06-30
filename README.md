@@ -25,9 +25,6 @@ This SQL-based analysis explores retail sales data from 2010 to 2014, uncovering
 - All top-performing products fall into two families: Mountain-200 and Road-150, reflecting strong brand loyalty and product-market fit.
 - Size and color variations (example : Black 46, Silver 38, Red 62) consistently appear across the top ranks, indicating that both product specification and aesthetic options influence customer purchasing decisions.
 - The Mountain-200 series alone accounts for 7 out of 10 top spots, highlighting its market dominance across multiple sizes and finishes.
-## Insights Deep-Dive
-
-### 1. Top 10 Products by Revenue
 
 To identify top-selling products, I aggregated sales revenue and ranked the highest-grossing items:
 
