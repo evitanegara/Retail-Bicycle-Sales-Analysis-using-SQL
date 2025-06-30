@@ -85,9 +85,9 @@ WHERE order_date IS NOT NULL
 GROUP BY YEAR(order_date)
 ORDER BY YEAR(order_date);
 ```
-
-![image](https://github.com/user-attachments/assets/88c4621a-8a6a-4115-a828-1d60cf9eb830)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/88c4621a-8a6a-4115-a828-1d60cf9eb830" alt="Dashboard Visual" width="400"/>
+</p>
 
 ### 4. Category Revenue Contribution
 - Bikes contribute the overwhelming majority of revenue, generating 96.46% of total sales.
@@ -115,8 +115,9 @@ CONCAT (ROUND((CAST(total_sales AS FLOAT) / SUM(total_sales) OVER ()) * 100, 2),
 FROM category_sales
 ORDER BY total_sales DESC
 ```
-![image](https://github.com/user-attachments/assets/9c9a69e0-f8e2-4fbb-ad57-510eff90847b)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9c9a69e0-f8e2-4fbb-ad57-510eff90847b" alt="Dashboard Visual" width="400"/>
+</p>
 
 ### 5. Product Performance Over Time
 - Mountain-200, Road-150, and Touring-1000 models peaked in 2013 before dropping in 2014. 
@@ -154,8 +155,9 @@ SELECT
 FROM yearly_product_sales
 ORDER BY product_name, order_year;
 ```
-![image](https://github.com/user-attachments/assets/616704ad-aa38-4d49-ab91-49a6d5ad0182)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/616704ad-aa38-4d49-ab91-49a6d5ad0182" alt="Dashboard Visual" width="400"/>
+</p>
 
 ### 6. Gender-Based Revenue Segmentation
 - Female customers contributed slightly more revenue (14.8M) than males (14.5M)
@@ -175,7 +177,9 @@ WHERE c.gender IS NOT NULL
   AND c.gender != 'n/a'
 GROUP BY c.gender;
 ```
-![image](https://github.com/user-attachments/assets/cadab18b-4456-4c51-8603-1daebc75991f)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cadab18b-4456-4c51-8603-1daebc75991f" alt="Dashboard Visual" width="400"/>
+</p>
 
 
 ### 7. Customer Segmentation by Value
@@ -215,7 +219,9 @@ FROM (
 GROUP BY customer_segment
 ORDER BY total_customers DESC;
 ```
-![image](https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3" alt="Dashboard Visual" width="400"/>
+</p>
 
 ### 8. Top-Spending Customers
 - All top 10 highest-spending customers are located in France  
@@ -236,8 +242,9 @@ JOIN gold.dim_customers c ON f.customer_key = c.customer_key
 GROUP BY c.customer_number, c.first_name, c.last_name, c.country
 ORDER BY total_revenue DESC;
 ```
-![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c" alt="Dashboard Visual" width="400"/>
+</p>
 
 ## Recommendations
 
