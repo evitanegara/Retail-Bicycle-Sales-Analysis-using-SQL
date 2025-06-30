@@ -25,16 +25,20 @@ This SQL-based analysis explores retail sales data from 2010 to 2014, uncovering
 - All top-performing products fall into two families: Mountain-200 and Road-150, reflecting strong brand loyalty and product-market fit.
 - Size and color variations (example : Black 46, Silver 38, Red 62) consistently appear across the top ranks, indicating that both product specification and aesthetic options influence customer purchasing decisions.
 - The Mountain-200 series alone accounts for 7 out of 10 top spots, highlighting its market dominance across multiple sizes and finishes.
-  ```sql
+
+Syntax :
+To identify top-selling products, I aggregated sales revenue and ranked the highest-grossing items:
+
+```sql
 SELECT TOP 10
     p.product_name,
     SUM(f.sales_amount) AS total_sales
 FROM gold.fact_sales f
-LEFT JOIN gold.dim_products p ON f.product_key = p.product_key
+LEFT JOIN gold.dim_products p
+    ON f.product_key = p.product_key
 GROUP BY p.product_name
 ORDER BY total_sales DESC;
-  ![image](https://github.com/user-attachments/assets/b6ef3e4a-c3e9-4e9a-bc84-f80217ccd82b)
-  ![image](https://github.com/user-attachments/assets/c54ca3d8-4972-4e96-a559-a65571bcff4c)
+
 
 ### 2. Revenue by Country
 - United States generated the highest revenue at over 9.16 million from 7,482 customers, indicating a strong and wide customer base.
