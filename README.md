@@ -41,14 +41,24 @@ ORDER BY total_sales DESC;
 ![image](https://github.com/user-attachments/assets/43a8afed-9567-425b-b9df-9cbe21ab91dc)
 
 
-
-
 ### 2. Revenue by Country
 - United States generated the highest revenue at over 9.16 million from 7,482 customers, indicating a strong and wide customer base.
 - Australia nearly matches U.S. revenue at 9.06 million, but with less than half the customer count (3,591), highlighting higher average order values or premium product penetration.
 - Mid-tier contributors include the United Kingdom (3.39M), Germany (2.89M), and France (2.64M), each showing decent customer engagement but lower sales volumes.
 - Canada, despite having fewer than 1,600 customers, contributed nearly 2M in revenue, suggesting an opportunity for expansion if customer base grows.
 ![image](https://github.com/user-attachments/assets/a7214187-8e0b-4849-bc70-7c9c0ae37631)
+
+-- Sales Distribution by Country
+SELECT 
+    c.country,
+    COUNT(DISTINCT f.customer_key) AS total_customers,
+    SUM(f.sales_amount) AS total_revenue
+FROM gold.fact_sales f
+JOIN gold.dim_customers c ON f.customer_key = c.customer_key
+WHERE c.country != 'n/a'
+GROUP BY c.country
+ORDER BY total_revenue DESC;
+```
 
 ### 3. Year-over-Year Sales Trends
 - Sales performance rose significantly from 2011 (7.1M) to 2013 (16.3M), indicating strong year-over-year growth.
@@ -68,32 +78,29 @@ ORDER BY total_sales DESC;
 - Accessories and clothing items (gloves, jerseys, helmets) surged in 2013, then declined sharply in 2014.
 - Products like All-Purpose Bike Stand and Classic Vests showed growth over 2 years, suggesting sustainable popularity.
 -  2013 marked the peak sales year for most SKUs, with a significant drop-off in 2014 across categories.
- ![image](https://github.com/user-attachments/assets/97da7320-a67d-4621-84ef-6186c8d547c8)
-![image](https://github.com/user-attachments/assets/dc7fd137-042a-47da-b958-e703dce3c576)
+![image](https://github.com/user-attachments/assets/616704ad-aa38-4d49-ab91-49a6d5ad0182)
+
 
 ### 6. Gender-Based Revenue Segmentation
 - Female customers contributed slightly more revenue (14.8M) than males (14.5M)
 - Customer count is nearly equal across genders—9,128 females vs. 9,341 males
 - Suggests purchasing power is balanced across gender, with similar average order values
-  ![image](https://github.com/user-attachments/assets/ae17dda9-6a0e-4153-9be1-05c35fb8e3ea)
-  ![image](https://github.com/user-attachments/assets/6eb4cf18-98aa-4acc-9738-19e0fe1c3503)
+![image](https://github.com/user-attachments/assets/cadab18b-4456-4c51-8603-1daebc75991f)
+
 
 ### 7. Customer Segmentation by Value
 -The majority of customers (14,631) fall into the New segment  
 - Regular customers account for 2,198 individuals  
 - VIP customers, though smallest in number (1,655), likely contribute the most revenue  
 - Targeted efforts to retain and convert New users into Regular or VIP could significantly boost profitability
-  ![image](https://github.com/user-attachments/assets/c4cf9b51-45bd-4cf9-a0ea-7f248b28b4a0)
-![image](https://github.com/user-attachments/assets/84b88731-0d6a-4366-9640-ab122ac8007f)
-
+![image](https://github.com/user-attachments/assets/0ebf0374-a856-4083-bdf9-19da4e7aeb2c)
 
 ### 8. Top-Spending Customers
 - All top 10 highest-spending customers are located in France  
 - Kaitlyn Henderson and Nichole Nara are tied as the top spenders, each contributing 13,294 in total revenue  
 - Each of the top 10 has contributed over 13K, highlighting a concentrated group of high-value buyers  
 - These customers present an opportunity for premium loyalty programs and tailored offers  
-  ![image](https://github.com/user-attachments/assets/b0633d73-d6e9-4e3f-a1f3-63cf2a88cdf6)
-  ![image](https://github.com/user-attachments/assets/ca9cdd21-c62c-444d-8d1f-e23993c36b5a)
+![image](https://github.com/user-attachments/assets/f2587f35-c477-4065-9279-6129db39c5e3)
 
 ---
 
